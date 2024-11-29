@@ -3,7 +3,7 @@ import {render, screen,fireEvent} from '@testing-library/react-native';
 import TasksScreen from '../screen/TasksScreen';
 import useFetchTasks from '../utils/tasks/useFetchTasks';
 
-jest.mock("../utils/Supabase", () => ({
+jest.mock("../utils/SupabaseContext", () => ({
     Supabase: {
         from: jest.fn().mockReturnValue({
             select: jest.fn().mockResolvedValue({

@@ -1,19 +1,30 @@
-import {useQueryClient} from "@tanstack/react-query";
-import {useEffect} from "react";
-import {Supabase} from "../Supabase";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useSupabase } from "../SupabaseContext";
 
 export const useRealTimeTasks = () => {
     const queryClient = useQueryClient();
+    const supabase = useSupabase();
+
     useEffect(() => {
-        const channel = Supabase
-            .channel('realtime:tasks')
-            .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks' }, () => {
-                queryClient.invalidateQueries(['tasks']);
-            })
+        if (!supabase) {
+            console.warn("Supabase client not ready.");
+            return;
+        }
+
+        const channel = supabase
+            .channel("realtime:tasks")
+            .on(
+                "postgres_changes",
+                { event: "*", schema: "public", table: "tasks" },
+                () => {
+                    queryClient.invalidateQueries(["tasks"]);
+                }
+            )
             .subscribe();
 
         return () => {
-            Supabase.removeChannel(channel);
+            supabase.removeChannel(channel);
         };
-    }, [queryClient]);
-}
+    }, [supabase, queryClient]); // Include all dependencies
+};

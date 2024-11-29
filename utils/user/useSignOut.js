@@ -1,16 +1,17 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {Supabase} from "../Supabase";
+import {useSupabase} from "../SupabaseContext";
 
-const signOut=async ()=>{
+const signOut=async (Supabase)=>{
     const [data,error]=await Supabase.auth.signOut()
     if(error)throw new Error(error.message);
 }
 
 export const useSignOut=()=>{
     const queryClient=useQueryClient()
+    const Supabase=useSupabase()
     return useMutation({
-        mutationFn:()=>signOut(),
-        onsuccess:()=>{
+        mutationFn:()=>signOut(Supabase),
+        onSuccess:()=>{
             queryClient.invalidateQueries(['authUser'])
         }
     })

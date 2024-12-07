@@ -1,7 +1,7 @@
-import { View, StyleSheet } from "react-native";
+import {View, StyleSheet, StatusBar} from "react-native";
 import useFetchTasks from "../utils/tasks/useFetchTasks";
 import TaskList from "../component/TaskList";
-import { Text, FAB, ActivityIndicator } from "react-native-paper";
+import {Text, FAB, ActivityIndicator, useTheme} from "react-native-paper";
 import DialogInput from "../component/DialogInput";
 import { useState } from "react";
 import useCreateTask from "../utils/tasks/useCreateTask";
@@ -12,12 +12,11 @@ import { useSupabase } from "../utils/SupabaseContext";
 
 function TasksScreen() {
     useRealTimeTasks();
-
-    const { data: tasks, isLoading, isError, error } = useFetchTasks();
-    const { mutate: createTask } = useCreateTask();
-    const { mutate: updateTask } = useUpdateTask();
-    const { mutate: deleteTask } = useDeleteTask();
-
+    const { data: tasks, isLoading, isError, error :fetchTasksError } = useFetchTasks();
+    const { mutate: createTask,error:createTaskError, } = useCreateTask();
+    const { mutate: updateTask ,error:updateTaskError} = useUpdateTask();
+    const { mutate: deleteTask ,error:deleteTaskError} = useDeleteTask();
+           const {colors}                 = useTheme()
     const Supabase = useSupabase();
     const [isDialogShown, setDialogShown] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
@@ -33,7 +32,22 @@ function TasksScreen() {
     if (isError) {
         return (
             <View style={styles.center}>
-                <Text>Error loading tasks: {error?.message || "Unknown error"}</Text>
+                <Text>Error loading tasks: {fetchTasksError?.message || "Unknown error"}</Text>
+            </View>
+        );
+    }
+
+    if (isError) {
+        return (
+            <View style={styles.center}>
+                <Text>Error loading tasks: {fetchTasksError?.message || "Unknown error"}</Text>
+            </View>
+        );
+    }
+    if (isError) {
+        return (
+            <View style={styles.center}>
+                <Text>Error loading tasks: {fetchTasksError?.message || "Unknown error"}</Text>
             </View>
         );
     }
@@ -74,6 +88,7 @@ function TasksScreen() {
 
     return (
         <View style={{ flex: 1 }}>
+            <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
             <DialogInput
                 isShown={isDialogShown}
                 onAdd={handleTaskSubmit}
@@ -89,9 +104,10 @@ function TasksScreen() {
                 </View>
             )}
             <FAB
-                style={styles.fab}
+                style={{...styles.fab,backgroundColor:colors.pop}}
                 onPress={() => setDialogShown(true)}
                 icon="plus"
+                color={colors.surface}
             />
         </View>
     );

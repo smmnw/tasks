@@ -1,10 +1,11 @@
 import {View} from "react-native";
-import {Portal, Dialog, TextInput, Button, Checkbox} from "react-native-paper";
+import {Portal, Dialog, TextInput, Button, Checkbox, useTheme} from "react-native-paper";
 import {useEffect, useState} from 'react'
 
 export default function DialogInput({onAdd, isShown, onCancel, task, onDelete}) {
     const [text, setText] = useState('');
     const [isSelected, setIsSelected] = useState(false);
+    const{colors} =  useTheme()
 
     useEffect(() => {
         setText(task ? task.name : '')
@@ -49,7 +50,7 @@ export default function DialogInput({onAdd, isShown, onCancel, task, onDelete}) 
                 <Dialog.Actions>
                     {task && (<Button onPress={handleDelete}  textColor='red'>Delete</Button>)}
                     <Button onPress={handleCancel}>Cancel</Button>
-                    <Button onPress={handleAdd}>{task ? 'Update' : 'Add'}</Button>
+                    <Button onPress={handleAdd} labelStyle={{color:colors.accent}}>{task ? 'Update' : 'Add'}</Button>
                 </Dialog.Actions>
             </Dialog>
         </Portal>

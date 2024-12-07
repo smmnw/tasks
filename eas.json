@@ -1,0 +1,29 @@
+{
+  "cli": {
+    "version": ">= 12.4.1",
+    "appVersionSource": "remote"
+  },"build": {
+  "preview": {
+    "distribution": "internal",
+    "android": {
+      "buildType": "apk"
+    },
+    "env": {
+      "URL": "@URL",
+      "KEY": "@KEY"
+    }
+  },
+  "production": {
+    "autoIncrement": true,
+    "env": {
+      "URL": "@URL",
+      "KEY": "@KEY"
+    }
+  }
+},
+  "submit": {
+    "production": {
+
+    }
+  }
+}

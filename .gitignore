@@ -37,3 +37,5 @@ yarn-error.*
 
 PRIVATE.js
 .env
+eas.json
+./assets/dev.png

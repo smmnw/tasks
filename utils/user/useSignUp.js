@@ -4,7 +4,7 @@ import {useSupabase} from "../SupabaseContext";
 const signUp = async (email, password,Supabase) => {
 
     const {user,error} = await Supabase.auth.signUp({email:email, password:password})
-   console.log(error)
+      if(error) throw new Error(error.message);
      return user
 }
 

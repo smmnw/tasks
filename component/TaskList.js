@@ -1,6 +1,5 @@
 import {FlatList, View} from "react-native";
 import Task from "./Task";
-import {useRealTimeTasks} from "../utils/tasks/useRealTimeTasks";
 
 export default function TaskList({tasks, onPress}) {
 

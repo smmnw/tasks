@@ -9,12 +9,12 @@ module.exports = function (api) {
                     ['module:react-native-dotenv', { // Dotenv plugin
                         moduleName: '@env', // Import module name
                         path: '.env', // Path to your .env file
-                        allowUndefined: true, // Allow undefined variables
                     }],
                 ],
             },
         },
         plugins: [
+            'react-native-reanimated/plugin',
             ['module:react-native-dotenv', {
                 moduleName: '@env',
                 path: '.env',

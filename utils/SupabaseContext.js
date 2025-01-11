@@ -5,7 +5,7 @@ import * as SecureStore from "expo-secure-store";
 import { Text, View } from "react-native";
 import { useSavePrivate } from "./user/useSavePrivate";
 
-const SupabaseContext = createContext(null);
+const SupabaseContext = createContext({});
 
 export const SupabaseProvider = ({ children }) => {
     const [supabaseClient, setSupabaseClient] = useState(null);

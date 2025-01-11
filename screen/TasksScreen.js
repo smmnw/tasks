@@ -1,7 +1,7 @@
-import {View, StyleSheet, StatusBar} from "react-native";
+import {View, StyleSheet} from "react-native";
 import useFetchTasks from "../utils/tasks/useFetchTasks";
 import TaskList from "../component/TaskList";
-import {Text, FAB, ActivityIndicator, useTheme} from "react-native-paper";
+import {Text, FAB, ActivityIndicator} from "react-native-paper";
 import DialogInput from "../component/DialogInput";
 import { useState } from "react";
 import useCreateTask from "../utils/tasks/useCreateTask";
@@ -9,6 +9,7 @@ import { useUpdateTask } from "../utils/tasks/useUpdateTask";
 import { useDeleteTask } from "../utils/tasks/useDeleteTask";
 import { useRealTimeTasks } from "../utils/tasks/useRealTimeTasks";
 import { useSupabase } from "../utils/SupabaseContext";
+import {StatusBar} from "expo-status-bar";
 
 function TasksScreen() {
     useRealTimeTasks();
@@ -16,7 +17,6 @@ function TasksScreen() {
     const { mutate: createTask,error:createTaskError, } = useCreateTask();
     const { mutate: updateTask ,error:updateTaskError} = useUpdateTask();
     const { mutate: deleteTask ,error:deleteTaskError} = useDeleteTask();
-           const {colors}                 = useTheme()
     const Supabase = useSupabase();
     const [isDialogShown, setDialogShown] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
@@ -88,7 +88,7 @@ function TasksScreen() {
 
     return (
         <View style={{ flex: 1 }}>
-            <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
+            <StatusBar style="light" />
             <DialogInput
                 isShown={isDialogShown}
                 onAdd={handleTaskSubmit}
@@ -104,10 +104,10 @@ function TasksScreen() {
                 </View>
             )}
             <FAB
-                style={{...styles.fab,backgroundColor:colors.pop}}
+                style={{...styles.fab}}
                 onPress={() => setDialogShown(true)}
                 icon="plus"
-                color={colors.surface}
+
             />
         </View>
     );

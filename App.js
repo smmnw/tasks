@@ -28,13 +28,16 @@ const LightModified = {
     ...CombinedLight,
     colors: {
         ...CombinedLight.colors,
-        primary: '#4B0082', // Vivid Indigo
-        accent: '#00BFFF',  // Electric Cyan
-        background: '#F5F5F5', // Light Gray
-        surface: '#FFFFFF', // White
-        text: '#2C2C2C', // Charcoal Black
-        error: '#FF7F50', // Warm Coral
-        pop:'#32CD32'
+        primary: '#607d8b', // BlueGrey from Material Design
+        secondary: '#90a4ae', // A lighter BlueGrey shade
+        accent: '#ff5722', // Accent color (optional)
+        background: '#eceff1', // Light background
+        surface: '#ffffff', // Default surface color
+        text: '#263238', // Default text color
+        onSurface: '#37474f', // Text on surface
+        secondaryContainer: '#90a4ae',
+        primaryContainer: '#607d8b',
+        onPrimaryContainer: '#ffffff'
     }
 };
 

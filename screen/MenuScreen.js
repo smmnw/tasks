@@ -1,9 +1,8 @@
 import  {View,Linking} from "react-native";
-import {Button, List, useTheme} from 'react-native-paper'
+import {Button, List} from 'react-native-paper'
 import {useAuth} from "../utils/AuthContext";
 import {useSignOut} from "../utils/user/useSignOut";
  const MenuScreen = () => {
-   const {colors} =  useTheme()
      const {user, loading} = useAuth();
      const {mutate: signOut} = useSignOut();
 
@@ -43,11 +42,7 @@ import {useSignOut} from "../utils/user/useSignOut";
             <View style={{justifyContent: "center", alignItems: "center"}}>
                 <Button onPress={()=>{
                     logout()
-                }} style={{backgroundColor:colors.accent}} mode='elevated' labelStyle={
-                    {
-                        color:colors.surface
-                    }
-                }>Logout</Button>
+                }}  mode='elevated' >Logout</Button>
             </View>
 
         </View>

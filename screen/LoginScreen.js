@@ -1,14 +1,15 @@
-import {Alert, StatusBar, View} from "react-native";
-import {Button, TextInput, Text, useTheme} from "react-native-paper";
+import {Alert,  View} from "react-native";
+import {Button, TextInput} from "react-native-paper";
 import {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
 import { useSignIn} from '../utils/user/useSignIn'
+import {StatusBar} from "expo-status-bar";
+
 export default function LoginScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigation = useNavigation()
     const {mutate,error}  =useSignIn()
-    const {colors} =useTheme()
       const loginHandler=()=>{
         mutate({email, password})
       }
@@ -16,7 +17,7 @@ export default function LoginScreen() {
 
     return (
         <View style={{flex: 1}}>
-            <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
+            <StatusBar style="light"  />
 
             {error && Alert.alert("Error",new Error(error).message)}
         <View>

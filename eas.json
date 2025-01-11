@@ -11,6 +11,9 @@
     "env": {
       "URL": "@URL",
       "KEY": "@KEY"
+    },
+    "ios": {
+      "simulator": true
     }
   },
   "production": {

@@ -1,14 +1,15 @@
-import {Alert, StatusBar, View} from "react-native";
-import {Button, TextInput, Text, useTheme} from "react-native-paper";
+import {Alert, View} from "react-native";
+import {Button, TextInput, Text} from "react-native-paper";
 import {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
 import {useSignUp} from "../utils/user/useSignUp";
+import {StatusBar} from "expo-status-bar";
 
 export default function SignupScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const {mutate, isLoading, error} = useSignUp()
-    const {colors} =useTheme()
+
     if (isLoading) {
         return <View><Text>Loading...</Text></View>
     }
@@ -19,7 +20,7 @@ export default function SignupScreen() {
     }
     const navigation = useNavigation()
     return (<View style={{flex: 1}}>
-        <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
+        <StatusBar style="light" />
 
         {error && Alert.alert("Error", new Error(error).message)}
         <View>

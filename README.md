@@ -1,4 +1,4 @@
-# Expiry Alert App  
+# Task App  
 
 ## Project Overview  
 This mobile app is developed using **React Native** and powered by **Supabase** for backend services. It allows users to add items, track expiry dates, and manage tasks efficiently. The app supports cross-platform sync to ensure data consistency across devices.  
@@ -13,7 +13,7 @@ This mobile app is developed using **React Native** and powered by **Supabase** 
 
 ## Features  
 - **Cross-Platform Sync**: Seamless data synchronization across devices.  
-- **Add Items**: Easily add items with expiry dates for tracking.  
+- **Add Items**: Easily add items for tracking.  
 - **Check Boxes**: Mark tasks or items as completed with a simple check box feature.  
 
 ## Setup Instructions  
